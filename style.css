@@ -156,6 +156,33 @@ body {
   display: none;
 }
 
+.toggle-visibility {
+  border: none;
+  outline: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.form-control.empty .toggle-visibility {
+  right: 50px;
+}
+
+.toggle-visibility i {
+  pointer-events: none;
+  display: none;
+}
+
+.toggle-visibility.hide i.im-eye-off,
+.toggle-visibility:not(.hide) i.im-eye {
+  display: block;
+}
+
 .submit-btn {
   border: none;
   outline: none;

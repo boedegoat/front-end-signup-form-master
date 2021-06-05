@@ -77,3 +77,14 @@ function isEmail(email) {
     return false
   }
 }
+
+const passwordToggler = document.querySelector('.toggle-visibility')
+const password = document.getElementById('password')
+passwordToggler.addEventListener('click', (e) => {
+  e.target.classList.toggle('hide')
+  if (!e.target.className.includes('hide')) {
+    password.setAttribute('type', 'text')
+  } else {
+    password.setAttribute('type', 'password')
+  }
+})
