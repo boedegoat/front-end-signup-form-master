@@ -24,7 +24,6 @@ body {
 }
 
 .container {
-  /* border: 1px solid; */
   max-width: 1110px;
   display: flex;
   margin: 1rem;
@@ -40,6 +39,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-right: 1rem;
 }
 
 .main-header {
@@ -215,4 +215,27 @@ body {
 .terms a {
   text-decoration: none;
   color: var(--primary-red);
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin: 2.5rem 2rem;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .main-header {
+    font-size: 2rem;
+  }
+
+  .sub-header {
+    margin-bottom: 2rem;
+  }
+
+  .alert {
+    flex-direction: column;
+  }
 }
