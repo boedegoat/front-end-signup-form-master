@@ -6,11 +6,15 @@ const formControls = document.querySelectorAll('.form-control')
 form.addEventListener('submit', (e) => {
   // prevent page reload on submit
   e.preventDefault()
-  if (checkInput()) alert('Mantap')
+  checkInput((user) => {
+    const firstName = user['first-name']
+    alert(`Thank you ${firstName}, your free trial has been send to your email address.`)
+  })
 })
 
-function checkInput() {
+function checkInput(callback) {
   let isError = false
+  const inputObject = {}
 
   // reset class helper function
   function reset(formControl) {
@@ -26,27 +30,43 @@ function checkInput() {
     if (!input.value.trim()) {
       formControl.classList.add('empty')
       isError = true
+      return
     }
 
     // if email input is not empty but invalid, add invalid vlass
-    if (input.id === 'email' && input.value.trim() && !isEmail(input.value.trim())) {
+    if (input.id === 'email' && !isEmail(input.value.trim())) {
       formControl.classList.remove('empty')
       formControl.classList.add('invalid')
       isError = true
+      return
+    }
+
+    // if there is no error, put the value to the object
+    // for security purpose :v
+    if (input.id !== 'password') {
+      inputObject[input.id] = input.value.trim()
     }
   })
 
-  // if there is an error, return false
-  if (isError) return false
+  // if there is an error, add nope class
+  if (isError) {
+    form.classList.add('nope')
+    return
+  }
 
-  // if there is no error, reset the class and input and return true
+  // if there is no error, reset the class and input and run the callback
   formControls.forEach((formControl) => {
     reset(formControl)
     const input = formControl.querySelector('input')
     input.value = ''
   })
-  return true
+
+  callback(inputObject)
 }
+
+form.addEventListener('animationend', () => {
+  form.classList.remove('nope')
+})
 
 // email regex - check if an email is valid or not
 function isEmail(email) {
