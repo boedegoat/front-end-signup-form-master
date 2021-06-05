@@ -125,6 +125,11 @@ body {
 .form-control.empty input,
 .form-control.invalid input {
   border-color: var(--primary-red);
+  padding: 13px 55px 13px 25px;
+}
+
+.form-control.empty input#password {
+  padding: 13px 95px 13px 25px;
 }
 
 .form-control input {
@@ -135,6 +140,10 @@ body {
   font-weight: 600;
   color: var(--neutral-dark);
   font-size: 1rem;
+}
+
+.form-control input#password {
+  padding: 13px 55px 13px 25px;
 }
 
 .form-control input::placeholder {
@@ -270,5 +279,10 @@ body {
 
   .alert {
     flex-direction: column;
+  }
+
+  .form-control input,
+  .submit-btn {
+    font-size: clamp(13px, 2vw, 16px);
   }
 }
