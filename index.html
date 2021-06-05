@@ -32,12 +32,25 @@
         </h5>
       </header>
       <div class="form-wrapper">
-        <div class="alert"><b>Try it free 7 days</b> then $20/mo. thereafter</div>
+        <div class="alert"><b>Try it free 7 days</b> &nbsp; then $20/mo. thereafter</div>
         <form class="sign-up-form">
-          <input type="text" placeholder="First Name" required />
-          <input type="text" placeholder="Last Name" required />
-          <input type="email" placeholder="Email Address" required />
-          <input type="password" placeholder="Password" required />
+          <div class="form-control">
+            <input type="text" placeholder="First Name" id="first-name" required />
+            <small class="empty-msg">First name cannot be empty</small>
+          </div>
+          <div class="form-control">
+            <input type="text" placeholder="Last Name" id="last-name" required />
+            <small class="empty-msg">Last name cannot be empty</small>
+          </div>
+          <div class="form-control">
+            <input type="email" placeholder="Email Address" id="email" required />
+            <small class="empty-msg">Email cannot be empty</small>
+            <small class="invalid-msg">Looks like this is not an email</small>
+          </div>
+          <div class="form-control">
+            <input type="password" placeholder="Password" id="password" required />
+            <small class="empty-msg">Password cannot be empty</small>
+          </div>
           <button type="submit" class="submit-btn">Claim your free trial</button>
           <p class="terms">
             By clicking the button, you are agreeing to our <a href="#">Terms and Services</a>

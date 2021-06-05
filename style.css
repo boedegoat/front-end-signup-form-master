@@ -43,7 +43,6 @@ body {
 }
 
 .main-header {
-  width: 75%;
   font-size: 3rem;
 }
 
@@ -79,7 +78,34 @@ body {
   padding: 2rem;
 }
 
-.sign-up-form input {
+.form-control {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-control::after {
+  content: url(images/icon-error.svg);
+  display: inline-block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: none;
+}
+
+.form-control.empty::after,
+.form-control.empty .empty-msg,
+.form-control.invalid::after,
+.form-control.invalid .invalid-msg {
+  display: block;
+}
+
+.form-control.empty input,
+.form-control.invalid input {
+  border-color: var(--primary-red);
+}
+
+.form-control input {
   border: 1px solid rgba(0, 0, 0, 0.2);
   outline: none;
   padding: 13px 25px;
@@ -89,13 +115,23 @@ body {
   font-size: 1rem;
 }
 
-.sign-up-form input::placeholder {
+.form-control input::placeholder {
   font-weight: 500;
   color: var(--neutral-dark);
 }
 
-.sign-up-form input:focus {
+.form-control:not(.empty, .invalid) input:focus {
   border-color: var(--accent-blue);
+}
+
+.empty-msg,
+.invalid-msg {
+  text-align: end;
+  font-style: italic;
+  color: var(--primary-red);
+  margin-top: 5px;
+  font-weight: 600;
+  display: none;
 }
 
 .submit-btn {
