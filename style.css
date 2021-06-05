@@ -12,3 +12,40 @@
   --neutral-dark: hsl(249, 10%, 26%);
   --neutral-grayish: hsl(246, 25%, 77%);
 }
+
+body {
+  min-height: 100vh;
+  background: var(--primary-red);
+  background-image: url(images/bg-intro-desktop.png);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  /* border: 1px solid; */
+  max-width: 1110px;
+  display: flex;
+  margin: 1rem;
+}
+
+.header,
+.form-wrapper {
+  flex: 1;
+}
+
+.header {
+  color: #fff;
+}
+
+.main-header {
+  width: 75%;
+  font-size: 3rem;
+}
+
+.sub-header {
+  font-weight: lighter;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
