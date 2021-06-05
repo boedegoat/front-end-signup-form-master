@@ -195,6 +195,10 @@ body {
   font-size: 1rem;
   border-radius: 5px;
   border-bottom: 3px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
 .submit-btn:hover {
@@ -203,6 +207,35 @@ body {
 
 .submit-btn:active {
   border: none;
+}
+
+.submit-btn::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-top: 3px solid var(--primary-green);
+  animation: spin 2s linear infinite;
+  display: none;
+}
+
+.submit-btn.loading {
+  pointer-events: none;
+}
+
+.submit-btn.loading::before {
+  display: block;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .terms {

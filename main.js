@@ -1,6 +1,7 @@
 // form selectors
 const form = document.querySelector('.sign-up-form')
 const formControls = document.querySelectorAll('.form-control')
+const submitBtn = document.querySelector('.submit-btn')
 
 // form submit event listener
 form.addEventListener('submit', (e) => {
@@ -12,13 +13,28 @@ form.addEventListener('submit', (e) => {
   })
 })
 
-function checkInput(callback) {
+async function checkInput(callback) {
   let isError = false
   const inputObject = {}
 
   // reset class helper function
   function reset(formControl) {
     formControl.classList.remove('empty', 'invalid')
+  }
+
+  // email regex - check if an email is valid or not
+  function isEmail(email) {
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    if (email.match(regexEmail)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  // wait function - just for fun
+  function wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms))
   }
 
   // get each input values
@@ -54,29 +70,21 @@ function checkInput(callback) {
     return
   }
 
-  // if there is no error, reset the class and input and run the callback
+  // if there is no error, run the callback and reset
+  submitBtn.classList.add('loading')
+  await wait(1000)
+  submitBtn.classList.remove('loading')
+  callback(inputObject)
   formControls.forEach((formControl) => {
     reset(formControl)
     const input = formControl.querySelector('input')
     input.value = ''
   })
-
-  callback(inputObject)
 }
 
 form.addEventListener('animationend', () => {
   form.classList.remove('nope')
 })
-
-// email regex - check if an email is valid or not
-function isEmail(email) {
-  let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-  if (email.match(regexEmail)) {
-    return true
-  } else {
-    return false
-  }
-}
 
 const passwordToggler = document.querySelector('.toggle-visibility')
 const password = document.getElementById('password')
